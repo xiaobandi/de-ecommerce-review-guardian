@@ -1,0 +1,96 @@
+apiVersion: digital-employee/v1
+kind: DigitalEmployee
+metadata:
+  id: de_ecommerce_review_guardian
+  name: 评价管理与差评拦截
+  alias: 评价运营专员·小评
+  repo: de-ecommerce-review-guardian
+  card_no: 6.4-③
+  group: ecommerce
+  group_label: 电商商家
+  phase: P0 首发（竞品空白最明显：店小蜜重接待、轻评价运营，据R3调研）
+  complexity: S-M（门槛全图谱最低之一）
+  score: 高频5｜痛点5｜客单价3｜广度4｜价值5 ＝ **22/25**
+  price: 50-100 元/月（"评分是命根子"）
+  channels:
+  - GitHub
+  - 闲鱼（差评诊断报告钩子 SKU）
+  - 小红书
+  license: Proprietary
+  version: 1.0.0
+spec:
+  positioning: 评价运营专员·小评 ｜ 把评价从售后成本变成可监控、可归因、可修复的运营资产
+  users: 退货率高、评分敏感类目（服饰/美妆/食品）一人店
+  boundary: 做：评价监控、根因归因、回复草案、证据整理；不做：联系买家删差评（违规）、刷单刷评
+  kpi: 差评响应 ≤2 小时；中差评挽回率 ≥30%；DSR 环比不降
+  roi_summary: 一条差评挽回≈保住链接日销（按日利 ¥100 计一次回本）+ 月省 10h≈¥300
+  demand_refs:
+  - D08（边缘）
+  demand_support: 弱
+  demand_evidence: 低-中｜差评管理未在 D01–D28 单列；主依据为 R3 群体痛点，建议需求表续号 D29
+runtime:
+  system_prompt: persona/system-prompt.md
+  boundary: persona/boundary.md
+  kpi: persona/kpi.md
+deliverables:
+  skills:
+  - slug: dispute-evidence-pack
+    name: 纠纷证据包整理
+    kind: private
+    path: skills/dispute-evidence-pack
+    version: 1.0.0
+    maturity: contract-complete
+  - slug: negative-review-rootcause
+    name: 差评根因分类
+    kind: private
+    path: skills/negative-review-rootcause
+    version: 1.0.0
+    maturity: contract-complete
+  workflows:
+  - slug: wf-ecom-review-monitor
+    name: 评价流实时监控与分级
+    path: workflows/wf-ecom-review-monitor
+    version: 1.0.0
+    phase: P0
+    calls:
+    - review-sentiment-tag
+  - slug: wf-ecom-review-root-cause
+    name: 差评根因归因
+    path: workflows/wf-ecom-review-root-cause
+    version: 1.0.0
+    phase: P0
+    calls:
+    - negative-review-rootcause
+  - slug: wf-ecom-review-soothe
+    name: 安抚回复与补偿方案生成
+    path: workflows/wf-ecom-review-soothe
+    version: 1.0.0
+    phase: P0
+    calls:
+    - complaint-soothe
+  - slug: wf-ecom-review-evidence
+    name: 纠纷证据包整理
+    path: workflows/wf-ecom-review-evidence
+    version: 1.0.0
+    phase: P1
+    calls:
+    - dispute-evidence-pack
+  - slug: wf-ecom-review-weekly
+    name: 周报复盘
+    path: workflows/wf-ecom-review-weekly
+    version: 1.0.0
+    phase: P0
+    calls:
+    - brief-generator
+  knowledge_base: kb/
+  connectors: connectors/bindings.yaml
+external_dependencies:
+- repo: agent-skills-core
+  version: 1.0.0
+  skills:
+  - brief-generator
+  - complaint-soothe
+  - doc-qa-rag
+  - review-sentiment-tag
+  resolution: external
+spec_only_dependencies: []
