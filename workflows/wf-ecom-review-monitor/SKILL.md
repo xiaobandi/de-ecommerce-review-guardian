@@ -1,59 +1,66 @@
 ---
-name: wf-ecom-review-soothe
+name: wf-ecom-review-monitor
 description: >-
-  评价管理与差评拦截 的「安抚回复与补偿方案生成」工作流：根因→话术+补偿选项→人审发布。触发方式：人工确认。
-  当用户要完成「安抚回复与补偿方案生成」这件事、或触发了上述条件时使用。
+  评价管理与差评拦截 的「评价流实时监控与分级」工作流：评价抓取→情感分析→分级推送。触发方式：定时（每 30 分钟）。
+  当用户要完成「评价流实时监控与分级」这件事、或触发了上述条件时使用。
 license: Proprietary
+compatibility: >-
+  需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
+  跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。
 metadata:
   author: PLATFORM
   version: "1.0.0"
   standard: agent-skills/v1
+  library: agent-skills-library
   layer: L2-workflow
   owner: de_ecommerce_review_guardian
-  complexity: S
+  repo: de-ecommerce-review-guardian
+  visibility: private_to_employee
+  delivery: employee
+  complexity: M
   phase: P0
   source: library
 ---
 
-# 安抚回复与补偿方案生成
+# 评价流实时监控与分级
 
-> 归属：**评价管理与差评拦截**（`de-ecommerce-review-guardian`）　触发：人工确认　
-> 复杂度 S　阶段 P0
+> 归属：**评价管理与差评拦截**（`de-ecommerce-review-guardian`）　触发：定时（每 30 分钟）　
+> 复杂度 M　阶段 P0
 
 ## 一、这条工作流解决什么
 
-根因→话术+补偿选项→人审发布
+评价抓取→情感分析→分级推送
 
-**业务收益**：一条差评挽回≈保住链接日销
+**业务收益**：抢回差评黄金 2 小时窗口
 
 ## 二、调用的 SKILL（必填列，逐条锁定版本）
 
 | 技能名 | slug | 来源仓 | 版本 |
 |---|---|---|---|
-| `差评安抚话术` | `complaint-soothe` | core | v1.0.0 |
+| `评论情绪识别` | `review-sentiment-tag` | core | v1.0.0 |
 
 > 公共技能来自 `agent-skills-core@1.0.0`，本仓库只做外部依赖引用，
 > **不内联复制**其正文——这是三层仓库体系的硬规则，避免同一能力多份副本各自漂移。
 
 ## 三、执行步骤（每步四要素齐备）
 
-### 步骤 1：根因
+### 步骤 1：评价抓取
 
-- **做**：根因
+- **做**：评价抓取
 - **输入来源**：用户提供的原始材料（工作流第 1 步没有「上一步」）/ 本员工知识库 `kb/` / 连接器只读数据；三者皆空时必须停在 G1 闸门
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 
-### 步骤 2：话术+补偿选项
+### 步骤 2：情感分析
 
-- **做**：话术+补偿选项
+- **做**：情感分析
 - **输入来源**：步骤 1 的产出 / 本员工知识库 `kb/` / 连接器只读数据
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 
-### 步骤 3：人审发布
+### 步骤 3：分级推送
 
-- **做**：人审发布
+- **做**：分级推送
 - **输入来源**：步骤 2 的产出 / 本员工知识库 `kb/` / 连接器只读数据
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式

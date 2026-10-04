@@ -1,0 +1,15 @@
+{
+  "name": "wf-ecom-review-evidence",
+  "title": "纠纷证据包整理",
+  "kind": "workflow",
+  "owner": "de-ecommerce-review-guardian",
+  "complexity": "M",
+  "phase": "P1",
+  "one_liner": "订单/聊天/物流凭证→申诉格式",
+  "pages": [
+    "docs/使用手册.html",
+    "docs/使用示例.html",
+    "docs/用户场景.html",
+    "docs/架构与流程图.html"
+  ]
+}

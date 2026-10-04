@@ -4,12 +4,19 @@ description: >-
   评价管理与差评拦截 的「差评根因归因」工作流：差评文本+订单→物流/质量/期望差分类。触发方式：事件（新差评）。
   当用户要完成「差评根因归因」这件事、或触发了上述条件时使用。
 license: Proprietary
+compatibility: >-
+  需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
+  跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。
 metadata:
   author: PLATFORM
   version: "1.0.0"
   standard: agent-skills/v1
+  library: agent-skills-library
   layer: L2-workflow
   owner: de_ecommerce_review_guardian
+  repo: de-ecommerce-review-guardian
+  visibility: private_to_employee
+  delivery: employee
   complexity: S
   phase: P0
   source: library

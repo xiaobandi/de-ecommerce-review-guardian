@@ -1,53 +1,67 @@
 ---
-name: wf-ecom-review-evidence
+name: wf-ecom-review-soothe
 description: >-
-  评价管理与差评拦截 的「纠纷证据包整理」工作流：订单/聊天/物流凭证→申诉格式。触发方式：人工。
-  当用户要完成「纠纷证据包整理」这件事、或触发了上述条件时使用。
+  评价管理与差评拦截 的「安抚回复与补偿方案生成」工作流：根因→话术+补偿选项→人审发布。触发方式：人工确认。
+  当用户要完成「安抚回复与补偿方案生成」这件事、或触发了上述条件时使用。
 license: Proprietary
+compatibility: >-
+  需要能读取工作区文件；若环境支持执行代码，将额外启用 scripts/ 下的确定性脚本路径。
+  跨 WorkBuddy / ChatGPT / DeepSeek Harness / Kimi Work / 豆包工作。
 metadata:
   author: PLATFORM
   version: "1.0.0"
   standard: agent-skills/v1
+  library: agent-skills-library
   layer: L2-workflow
   owner: de_ecommerce_review_guardian
-  complexity: M
-  phase: P1
+  repo: de-ecommerce-review-guardian
+  visibility: private_to_employee
+  delivery: employee
+  complexity: S
+  phase: P0
   source: library
 ---
 
-# 纠纷证据包整理
+# 安抚回复与补偿方案生成
 
-> 归属：**评价管理与差评拦截**（`de-ecommerce-review-guardian`）　触发：人工　
-> 复杂度 M　阶段 P1
+> 归属：**评价管理与差评拦截**（`de-ecommerce-review-guardian`）　触发：人工确认　
+> 复杂度 S　阶段 P0
 
 ## 一、这条工作流解决什么
 
-订单/聊天/物流凭证→申诉格式
+根因→话术+补偿选项→人审发布
 
-**业务收益**：仅退款场景胜率提升
+**业务收益**：一条差评挽回≈保住链接日销
 
 ## 二、调用的 SKILL（必填列，逐条锁定版本）
 
 | 技能名 | slug | 来源仓 | 版本 |
 |---|---|---|---|
-| `纠纷证据包整理` | `dispute-evidence-pack` | 本仓 | v1.0.0 |
+| `差评安抚话术` | `complaint-soothe` | core | v1.0.0 |
 
 > 公共技能来自 `agent-skills-core@1.0.0`，本仓库只做外部依赖引用，
 > **不内联复制**其正文——这是三层仓库体系的硬规则，避免同一能力多份副本各自漂移。
 
 ## 三、执行步骤（每步四要素齐备）
 
-### 步骤 1：订单/聊天/物流凭证
+### 步骤 1：根因
 
-- **做**：订单/聊天/物流凭证
+- **做**：根因
 - **输入来源**：用户提供的原始材料（工作流第 1 步没有「上一步」）/ 本员工知识库 `kb/` / 连接器只读数据；三者皆空时必须停在 G1 闸门
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 
-### 步骤 2：申诉格式
+### 步骤 2：话术+补偿选项
 
-- **做**：申诉格式
+- **做**：话术+补偿选项
 - **输入来源**：步骤 1 的产出 / 本员工知识库 `kb/` / 连接器只读数据
+- **依据与结论**：把本步结论对应到具体输入项
+- **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
+
+### 步骤 3：人审发布
+
+- **做**：人审发布
+- **输入来源**：步骤 2 的产出 / 本员工知识库 `kb/` / 连接器只读数据
 - **依据与结论**：把本步结论对应到具体输入项
 - **未决 · 待填**：缺数据处写 `<待填>` 并给出获取方式
 

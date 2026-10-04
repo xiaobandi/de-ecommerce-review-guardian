@@ -7,6 +7,19 @@
 
 ![架构](docs/images/architecture.svg)
 
+## 效果（真实执行）
+
+![真实效果](workflows/wf-ecom-review-root-cause/docs/images/00-effect.png)
+
+*上图为**真实效果对比**，不是示意图：左栏是输入材料与要求，右栏是该次执行的产出原文，
+两栏取自同一次真实执行记录。*
+
+- 完整台账：[`reports/real-run/wf-ecom-review-root-cause.md`](reports/real-run/wf-ecom-review-root-cause.md)
+- 录屏与终端回放：[`workflows/wf-ecom-review-root-cause/docs/images/`](workflows/wf-ecom-review-root-cause/docs/images/)（`08-demo-run.gif` / `08-demo-run.mp4` / `04-terminal-run.png`）
+- 使用示例：[`workflows/wf-ecom-review-root-cause/docs/使用示例.md`](workflows/wf-ecom-review-root-cause/docs/使用示例.md)
+> 实测判定：**通过**　·　可用度 3/5　·　编造数字 0 处　·　红线命中 4 次 / 拦截 4 次
+
+
 **一句话**：退货率高、评分敏感类目（服饰/美妆/食品）一人店
 
 ---
@@ -101,7 +114,7 @@ de-ecommerce-review-guardian/
 
 | 项 | 值 |
 |---|---|
-| 技能文件数 | 112 |
+| 技能文件数 | 162 |
 | 多场景用例数 | 202 |
 | 用例通过 | 202 |
 | 验收结论 | ✅ 通过 |

@@ -1,0 +1,15 @@
+{
+  "name": "negative-review-rootcause",
+  "title": "差评根因分类",
+  "kind": "skill",
+  "owner": "de-ecommerce-review-guardian",
+  "complexity": "S",
+  "phase": "P0",
+  "one_liner": "物流/质量/期望差三轴归因（差评+订单→根因标签）",
+  "pages": [
+    "docs/使用手册.html",
+    "docs/使用示例.html",
+    "docs/用户场景.html",
+    "docs/架构与流程图.html"
+  ]
+}
