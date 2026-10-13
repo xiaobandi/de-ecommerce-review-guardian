@@ -16,7 +16,7 @@ metadata:
   - GitHub
   - 闲鱼（差评诊断报告钩子 SKU）
   - 小红书
-  license: Proprietary
+  license: Apache-2.0
   version: 1.0.0
 spec:
   positioning: 评价运营专员·小评 ｜ 把评价从售后成本变成可监控、可归因、可修复的运营资产
