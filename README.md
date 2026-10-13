@@ -5,6 +5,12 @@
 > **评价运营专员·小评**　·　电商商家　·　阶段 P0 首发（竞品空白最明显：店小蜜重接待、轻评价运营，据R3调研）　·　
 > 复杂度 S-M（门槛全图谱最低之一）　·　50-100 元/月（"评分是命根子"）　·　定义卡 6.4-③
 
+## 演示（真实执行录播）
+
+![演示](workflows/wf-ecom-review-root-cause/docs/images/08-demo-run.gif)
+
+*真实执行回放（GIF 自动循环，非摆拍）· [▶ 观看完整版 MP4](workflows/wf-ecom-review-root-cause/docs/images/08-demo-run.mp4) · 台账见 [`reports/real-run/wf-ecom-review-root-cause.md`](reports/real-run/wf-ecom-review-root-cause.md)*
+
 ![架构](docs/images/architecture.svg)
 
 ## 效果（真实执行）
@@ -58,6 +64,7 @@ python3 tests/run.py            # 先跑一遍自检，确认环境与契约都�
 
 ```text
 de-ecommerce-review-guardian/
+├── employee.md            # 人读定义卡（12 主字段 + 2 扩展组，由 employee.yaml 生成）
 ├── employee.yaml          # 机器契约（能力清单 + 依赖锁）
 ├── dependencies.yaml      # 对 core 的外部依赖（含版本）
 ├── persona/               # 运行提示词 / 边界 / KPI
